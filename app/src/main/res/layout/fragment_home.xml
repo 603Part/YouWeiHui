@@ -7,12 +7,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="230dp">
+        android:layout_height="200dp">
 
         <com.youweihui.tourismstore.view.BannerView
             android:id="@+id/home_banner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@color/gray" />
 
         <TextView
             android:id="@+id/home_location"
@@ -21,12 +22,13 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="30dp"
             android:drawableLeft="@mipmap/ic_home_location"
+            android:drawablePadding="5dp"
             android:gravity="center"
             android:text="北京"
             android:textColor="@color/white" />
 
         <TextView
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="30dp"
             android:layout_alignTop="@+id/home_location"
             android:layout_marginLeft="20dp"
@@ -39,12 +41,12 @@
             android:textSize="12sp" />
 
         <ImageView
-            android:layout_alignTop="@+id/home_location"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
+            android:layout_alignTop="@+id/home_location"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
-            android:src="@mipmap/ic_home_bell"/>
+            android:src="@mipmap/ic_home_bell" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -57,7 +59,7 @@
         <LinearLayout
             android:id="@+id/home_linear"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="44dp"
             android:layout_marginLeft="10dp"
             android:orientation="horizontal">
 
@@ -112,7 +114,7 @@
         <LinearLayout
             android:id="@+id/home_linear2"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="44dp"
             android:layout_below="@+id/home_line"
             android:layout_marginLeft="10dp"
             android:orientation="horizontal">
@@ -162,15 +164,15 @@
             android:id="@+id/home_linear3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_below="@+id/home_linear2"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
-                android:src="@mipmap/test" />
+                android:src="@mipmap/ic_home_auto_img" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -181,8 +183,8 @@
                     android:id="@+id/home_scroll"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
                     android:layout_gravity="center_vertical"
+                    android:layout_margin="5dp"
                     app:vsl_animDuration="500"
                     app:vsl_isCusDuration="true"
                     app:vsl_sleepTime="2000" />
@@ -193,8 +195,61 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="250dp"
+        android:layout_marginTop="10dp">
 
+        <LinearLayout
+            android:id="@+id/home_tail_order_linear"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@color/white"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
+            <View
+                android:layout_width="40dp"
+                android:layout_height="0.5dp"
+                android:layout_gravity="center"
+                android:background="@color/gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="推荐尾单" />
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="0.5dp"
+                android:layout_gravity="center"
+                android:background="@color/gray" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:drawablePadding="3dp"
+            android:layout_marginRight="10dp"
+            android:textSize="12sp"
+            android:drawableRight="@mipmap/ic_home_more"
+            android:text="更多" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/home_recycle"
+            android:layout_below="@+id/home_tail_order_linear"
+            android:layout_width="match_parent"
+            android:scrollbars="none"
+            android:padding="10dp"
+            android:background="@color/white"
+            android:overScrollMode="never"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
     </RelativeLayout>
 </LinearLayout>
