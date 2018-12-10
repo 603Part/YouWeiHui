@@ -5,7 +5,10 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import java.io.File;
+
 public final class ImageLoader {
+
     private static final String TAG = "ImageLoader";
 
     private ImageLoader() {
