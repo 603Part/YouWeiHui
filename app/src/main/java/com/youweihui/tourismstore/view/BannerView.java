@@ -6,13 +6,13 @@ import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.youweihui.tourismstore.R;
 import com.youweihui.tourismstore.adapter.BannerAdapter;
 
 import java.util.ArrayList;
@@ -91,7 +91,7 @@ public class BannerView extends FrameLayout implements OnPageChangeListener {
 
     private Handler handler = new Handler() {
 
-        public void handleMessage(android.os.Message msg) {
+        public void handleMessage(Message msg) {
             viewPager.setCurrentItem(getCurItemPic());
         }
 
@@ -132,16 +132,16 @@ public class BannerView extends FrameLayout implements OnPageChangeListener {
 
         LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
         lineary.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
-        lineary.setPadding(0, 0, 0, 10);
+        lineary.setPadding(0, 0, 0, 50);
         frameContainer.addView(lineary, layoutParams);
     }
 
     public void changeCurPontImg(int curPos) {
         for (int i = 0; i < imgList.size(); i++) {
             if (i == curPos) {
-//				pointImg.get(i).setBackgroundResource(R.drawable.page_indicator_focused);
+				pointImg.get(i).setBackgroundResource(R.mipmap.ic_home_banner1);
             } else {
-//				pointImg.get(i).setBackgroundResource(R.drawable.page_indicator_unfocused);
+				pointImg.get(i).setBackgroundResource(R.mipmap.ic_home_banner2);
             }
         }
     }
@@ -167,7 +167,7 @@ public class BannerView extends FrameLayout implements OnPageChangeListener {
         lineary.removeAllViews();
         for (int i = 0; i < this.imgList.size(); i++) {
             ImageView imageview = new ImageView(context);
-//			imageview.setBackgroundResource(R.drawable.page_indicator_unfocused);
+			imageview.setBackgroundResource(R.mipmap.ic_home_banner2);
             pointImg.add(imageview);
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -177,7 +177,8 @@ public class BannerView extends FrameLayout implements OnPageChangeListener {
         }
 
         viewPager.setCurrentItem(0);
-//		pointImg.get(0).setBackgroundResource(R.drawable.page_indicator_focused);
+
+		pointImg.get(0).setBackgroundResource(R.mipmap.ic_home_banner1);
 
         if (timer == null) {
             timer = new Timer();
