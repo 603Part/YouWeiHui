@@ -1,18 +1,19 @@
 package com.youweihui.tourismstore.ui.fragment;
 
-import android.os.Environment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.youweihui.imageloader.ImageLoader;
 import com.youweihui.tourismstore.R;
+import com.youweihui.tourismstore.adapter.HomeTailOrderAdapter;
 import com.youweihui.tourismstore.adapter.VerticalScrollAdapter;
 import com.youweihui.tourismstore.base.BaseFragment;
+import com.youweihui.tourismstore.bean.HomeTailOrderEntity;
 import com.youweihui.tourismstore.view.BannerView;
 import com.youweihui.tourismstore.view.VerticalScrollView;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +32,18 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.home_scroll)
     VerticalScrollView scrollLayout;
 
+    @BindView(R.id.home_recycle)
+    RecyclerView recyclerView;
+
     private ArrayList<String> imgList;
 
     private ArrayList<String> autoList;
 
+    private ArrayList<HomeTailOrderEntity> tailOrderList;
+
     private VerticalScrollAdapter scrollAdapter;
+
+    private HomeTailOrderAdapter tailOrderAdapter;
 
     @Override
     protected int getLayoutResId() {
@@ -45,17 +53,48 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected void initView() {
         fullScreen(getActivity());
+
         imgList = new ArrayList<>();
         autoList = new ArrayList<>();
+        tailOrderList = new ArrayList<>();
+
         autoList.add("");
         autoList.add("");
         autoList.add("");
         autoList.add("");
         autoList.add("");
         autoList.add("");
+
+        HomeTailOrderEntity entity1 = new HomeTailOrderEntity();
+        HomeTailOrderEntity entity2 = new HomeTailOrderEntity();
+        HomeTailOrderEntity entity3 = new HomeTailOrderEntity();
+        HomeTailOrderEntity entity4 = new HomeTailOrderEntity();
+        HomeTailOrderEntity entity5 = new HomeTailOrderEntity();
+
+        entity1.setImg("http://you.lumeilvyou3.cn/wenda/01/images/b2367f36779e3fa7fe3a2c131b3d7a84.jpg");
+        entity2.setImg("http://you.lumeilvyou3.cn/wenda/01/images/a6ad9024c244ffbd20427c37a1e691a8.jpg");
+        entity3.setImg("http://you.lumeilvyou3.cn/wenda/01/images/55b79ae2e0296aef854d03289e4f0664.jpg");
+        entity4.setImg("http://you.lumeilvyou3.cn/wenda/01/images/eecdc2b9be66398a43d57430138cef4a.jpg");
+        entity5.setImg("http://you.lumeilvyou3.cn/wenda/01/images/a6ad9024c244ffbd20427c37a1e691a8.jpg");
+
+        tailOrderList.add(entity1);
+        tailOrderList.add(entity2);
+        tailOrderList.add(entity3);
+        tailOrderList.add(entity4);
+        tailOrderList.add(entity5);
+
+        LinearLayoutManager manager = new LinearLayoutManager(context);
+        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(manager);
+
         scrollAdapter = new VerticalScrollAdapter(new ArrayList<String>());
+        tailOrderAdapter = new HomeTailOrderAdapter(new ArrayList<HomeTailOrderEntity>());
+
         scrollLayout.setAdapter(scrollAdapter);
         scrollAdapter.setList(autoList);
+        recyclerView.setAdapter(tailOrderAdapter);
+
+        tailOrderAdapter.setData(tailOrderList);
 
         setBannerData();
     }
