@@ -52,6 +52,7 @@ public class HomeFragment extends BaseFragment {
         autoList.add("");
         autoList.add("");
         autoList.add("");
+        autoList.add("");
         scrollAdapter = new VerticalScrollAdapter(new ArrayList<String>());
         scrollLayout.setAdapter(scrollAdapter);
         scrollAdapter.setList(autoList);
