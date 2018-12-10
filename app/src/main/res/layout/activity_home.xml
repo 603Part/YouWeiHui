@@ -18,7 +18,7 @@
     <RadioGroup
         android:id="@+id/home_radio_group"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="48dp"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
         android:orientation="horizontal">
@@ -35,7 +35,35 @@
             android:paddingTop="5dp"
             android:text="首页"
             android:textColor="@drawable/selector_home_text"
-            android:textSize="11sp" />
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/group_tail_order"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_tail_order"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="实时尾单"
+            android:textColor="@drawable/selector_home_text"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/group_forum"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_forum"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="论坛"
+            android:textColor="@drawable/selector_home_text"
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/group_shop"
@@ -47,22 +75,8 @@
             android:gravity="center"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
-            android:text="门店"
+            android:text="积分商城"
             android:textColor="@drawable/selector_home_text"
-            android:textSize="11sp" />
-
-        <RadioButton
-            android:id="@+id/group_my"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/selector_my"
-            android:gravity="center"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp"
-            android:text="我的"
-            android:textColor="@drawable/selector_home_text"
-            android:textSize="11sp" />
+            android:textSize="12sp" />
     </RadioGroup>
 </RelativeLayout>

@@ -64,5 +64,4 @@ public class BaseActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
-
 }
