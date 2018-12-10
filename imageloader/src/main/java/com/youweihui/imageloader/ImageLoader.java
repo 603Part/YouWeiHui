@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
 public final class ImageLoader {
+
     private static final String TAG = "ImageLoader";
 
     private ImageLoader() {
