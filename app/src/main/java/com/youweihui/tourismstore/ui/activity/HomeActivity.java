@@ -2,6 +2,7 @@ package com.youweihui.tourismstore.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -9,6 +10,10 @@ import android.widget.Toast;
 
 import com.youweihui.tourismstore.R;
 import com.youweihui.tourismstore.base.BaseActivity;
+import com.youweihui.tourismstore.location.CheckPermissionsActivity;
+import com.youweihui.tourismstore.location.callback.LocationCallBack;
+import com.youweihui.tourismstore.location.service.LocationImpl;
+import com.youweihui.tourismstore.location.service.LocationServiceProxy;
 import com.youweihui.tourismstore.ui.fragment.ForumFragment;
 import com.youweihui.tourismstore.ui.fragment.HomeFragment;
 import com.youweihui.tourismstore.ui.fragment.ShopFragment;
@@ -28,7 +33,7 @@ import butterknife.BindView;
  * @unfinish [未完成]     [参数说明: 标识]
  * @see [类、类#方法、类#成员]
  */
-public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener{
+public class HomeActivity extends CheckPermissionsActivity implements RadioGroup.OnCheckedChangeListener{
 
     //首页
     @BindView(R.id.group_home)
