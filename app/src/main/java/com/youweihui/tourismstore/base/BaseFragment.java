@@ -165,11 +165,10 @@ public abstract class BaseFragment extends LazyFragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 if (b){
-//                    Window window = activity.getWindow();
-//                    window.setStatusBarColor(Color.BLACK);
-//                    View decorView = window.getDecorView();
-//                    int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-//                    decorView.setSystemUiVisibility(option);
+                    Window window = activity.getWindow();
+                    View decorView = window.getDecorView();
+                    decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+                    window.setStatusBarColor(Color.WHITE);
                 }else{
                     //5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色
                     Window window = activity.getWindow();

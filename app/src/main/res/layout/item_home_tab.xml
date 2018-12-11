@@ -57,8 +57,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
+        android:singleLine="true"
         android:text="改革开放再出发｜从尝鲜到日常 路在脚下 心向远方"
         android:textSize="14sp"
         android:textColor="@color/gray2"/>
@@ -70,6 +71,6 @@
         android:layout_marginLeft="10dp"
         android:text="北戴河+秦皇岛+山海关区3日2晚跟团游"
         android:textColor="@color/line"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:textSize="12sp" />
 </LinearLayout>
