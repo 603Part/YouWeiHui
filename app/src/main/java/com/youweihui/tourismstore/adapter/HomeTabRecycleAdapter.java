@@ -10,24 +10,25 @@ import android.widget.TextView;
 
 import com.youweihui.imageloader.ImageLoader;
 import com.youweihui.tourismstore.R;
+import com.youweihui.tourismstore.bean.HomeTabEntity;
 import com.youweihui.tourismstore.bean.HomeTailOrderEntity;
 
 import java.util.List;
 
-public class HomeTailOrderAdapter extends RecyclerView.Adapter<HomeTailOrderAdapter.viewHolder> {
+public class HomeTabRecycleAdapter extends RecyclerView.Adapter<HomeTabRecycleAdapter.viewHolder> {
 
-    private List<HomeTailOrderEntity> list;
+    private List<HomeTabEntity> list;
 
     private Context context;
 
-    public HomeTailOrderAdapter(List<HomeTailOrderEntity> list) {
+    public HomeTabRecycleAdapter(List<HomeTabEntity> list) {
         this.list = list;
     }
 
     @Override
     public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
-        return new viewHolder(LayoutInflater.from(context).inflate(R.layout.item_home_tail_order, parent, false));
+        return new viewHolder(LayoutInflater.from(context).inflate(R.layout.item_home_tab, parent, false));
     }
 
     @Override
@@ -47,14 +48,14 @@ public class HomeTailOrderAdapter extends RecyclerView.Adapter<HomeTailOrderAdap
 
         public viewHolder(View itemView) {
             super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.item_home_tail_order_img);
+            imageView = (ImageView) itemView.findViewById(R.id.item_home_tab_img);
 //            textView1 = (TextView) itemView.findViewById(R.id.);
 //            textView2 = (TextView) itemView.findViewById(R.id.);
 //            textView3 = (TextView) itemView.findViewById(R.id.);
         }
     }
 
-    public void setData(List<HomeTailOrderEntity> list){
+    public void setData(List<HomeTabEntity> list){
         this.list = list;
         notifyDataSetChanged();
     }
