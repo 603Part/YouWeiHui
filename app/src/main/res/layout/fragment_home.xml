@@ -25,7 +25,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="220dp">
 
                 <com.youweihui.tourismstore.view.BannerView
                     android:id="@+id/home_banner"
@@ -38,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="35dp"
                     android:drawableLeft="@mipmap/ic_home_location"
                     android:drawablePadding="5dp"
                     android:gravity="center"
@@ -190,6 +190,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="10dp"
+                        android:padding="5dp"
                         android:src="@mipmap/ic_home_auto_img" />
 
                     <LinearLayout
@@ -202,8 +203,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center_vertical"
-                            android:layout_margin="5dp"
                             app:vsl_animDuration="500"
+                            android:layout_marginLeft="3dp"
                             app:vsl_isCusDuration="true"
                             app:vsl_sleepTime="2000" />
 
@@ -247,7 +248,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
+                    android:layout_height="44dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
