@@ -16,7 +16,7 @@ import java.util.List;
 public class HomeTabAdapter extends FragmentPagerAdapter{
 
     private List<BaseFragment> fragments = new ArrayList<>();
-
+    //
     private List<String> list = new ArrayList<>();
 
     public HomeTabAdapter(FragmentManager fm) {
