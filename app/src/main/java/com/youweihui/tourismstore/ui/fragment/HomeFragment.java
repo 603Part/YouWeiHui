@@ -1,17 +1,13 @@
 package com.youweihui.tourismstore.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.youweihui.imageloader.ImageLoader;
 import com.youweihui.tourismstore.R;
@@ -21,6 +17,7 @@ import com.youweihui.tourismstore.adapter.VerticalScrollAdapter;
 import com.youweihui.tourismstore.base.BaseFragment;
 import com.youweihui.tourismstore.bean.HomeTailOrderEntity;
 import com.youweihui.tourismstore.view.BannerView;
+import com.youweihui.tourismstore.view.CustomScrollView;
 import com.youweihui.tourismstore.view.NoScrollViewPager;
 import com.youweihui.tourismstore.view.VerticalScrollView;
 
@@ -29,13 +26,11 @@ import java.util.List;
 
 import butterknife.BindView;
 
-import static android.content.Context.WINDOW_SERVICE;
-
 /**
  * Created by ${范泽宁} on 2018/12/10.
  */
 
-public class HomeFragment extends BaseFragment implements NestedScrollView.OnScrollChangeListener {
+public class HomeFragment extends BaseFragment {
 
     //轮播图
     @BindView(R.id.home_banner)
@@ -50,17 +45,17 @@ public class HomeFragment extends BaseFragment implements NestedScrollView.OnScr
     @BindView(R.id.home_tb_layout)
     TabLayout tabLayout;
 
+    @BindView(R.id.home_tb_layout2)
+    TabLayout tabLayout2;
+
     @BindView(R.id.home_view_pager)
     NoScrollViewPager viewPager;
 
     @BindView(R.id.home_scroll)
-    NestedScrollView nestedScrollView;
+    CustomScrollView customScrollView;
 
     @BindView(R.id.home_abroad_linear)
     LinearLayout linearLayout;
-
-    @BindView(R.id.home_frame)
-    FrameLayout frameLayout;
 
     private ArrayList<String> imgList;
 
@@ -78,7 +73,7 @@ public class HomeFragment extends BaseFragment implements NestedScrollView.OnScr
 
     private HomeTabAdapter homeTabAdapter;
 
-    private float tabBeginY;
+    private ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener;
 
     @Override
     protected int getLayoutResId() {
@@ -87,7 +82,7 @@ public class HomeFragment extends BaseFragment implements NestedScrollView.OnScr
 
     @Override
     protected void initView() {
-        fullScreen(getActivity(),false);
+        fullScreen(getActivity(), false);
         imgList = new ArrayList<>();
         autoList = new ArrayList<>();
         tailOrderList = new ArrayList<>();
@@ -109,8 +104,6 @@ public class HomeFragment extends BaseFragment implements NestedScrollView.OnScr
         recyclerView.setAdapter(tailOrderAdapter);
         viewPager.setAdapter(homeTabAdapter);
         tailOrderAdapter.setData(tailOrderList);
-
-        nestedScrollView.setOnScrollChangeListener(this);
 
         setBannerData();
         setTailOrder();
@@ -140,18 +133,66 @@ public class HomeFragment extends BaseFragment implements NestedScrollView.OnScr
         for (int i = 0; i < tabList.size(); i++) {
             fragList.add(HomeTabFragment.newInstance(tabList.get(i).toString()));
             tabLayout.addTab(tabLayout.newTab());
+            tabLayout2.addTab(tabLayout2.newTab());
         }
 
-        viewPager.setOffscreenPageLimit(tabList.size());
+        viewPager.setOffscreenPageLimit(2);
+
+        viewPager.setCurrentItem(0);
 
         tabLayout.setTabMode(tabList.size() <= 4 ? TabLayout.MODE_FIXED : TabLayout.MODE_SCROLLABLE);
-
+        tabLayout2.setTabMode(tabList.size() <= 4 ? TabLayout.MODE_FIXED : TabLayout.MODE_SCROLLABLE);
         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.orange));
+        tabLayout2.setSelectedTabIndicatorColor(getResources().getColor(R.color.orange));
+
 //        tabLayout.setSelectedTabIndicatorHeight((int) getResources().getDimension(R.dimen.indicatorHeight));
+
+        onGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
+            @SuppressLint("NewApi")
+            @Override
+            public void onGlobalLayout() {
+                tabLayout2.setTranslationY(tabLayout.getTop());
+                tabLayout2.setVisibility(View.VISIBLE);
+                viewPager.getViewTreeObserver().removeOnGlobalLayoutListener(onGlobalLayoutListener);
+            }
+        };
+
+        viewPager.getViewTreeObserver().addOnGlobalLayoutListener(onGlobalLayoutListener);
+
+        customScrollView.setCallbacks(new CustomScrollView.Callbacks() {
+            @Override
+            public void onScrollChanged(int x, int y, int oldx, int oldy) {
+                int translation = Math.max(y, tabLayout.getTop());
+                tabLayout2.setTranslationY(translation);
+                if (y - 50 * 3 > tabLayout2.getHeight() - 10) {
+                    fullScreen(getActivity(), true);
+                } else {
+                    fullScreen(getActivity(), false);
+                }
+            }
+        });
+
+        tabLayout2.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
         homeTabAdapter.setData(fragList, tabList);
 
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout2.setupWithViewPager(viewPager);
     }
 
     private void addData() {
@@ -203,36 +244,5 @@ public class HomeFragment extends BaseFragment implements NestedScrollView.OnScr
         imgList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544426740841&di=1aa67a38806d3cb35d77a1e9bce4d707&imgtype=0&src=http%3A%2F%2Fimg.pptjia.com%2Fimage%2F20180117%2Ff4b76385a3ccdbac48893cc6418806d5.jpg");
         imgList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544426787463&di=423811f8e34002b14a8039e9ec53bf75&imgtype=0&src=http%3A%2F%2Fimg17.3lian.com%2Fd%2Ffile%2F201701%2F09%2F7d3cdc209be727aef32d28795dd58b3b.jpg");
 
-    }
-
-    @Override
-    public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-        if (tabBeginY == 0) {
-            tabBeginY = tabLayout.getY();
-        }
-
-        WindowManager wm = (WindowManager) context.getSystemService(WINDOW_SERVICE);
-
-        int screenHeight = wm.getDefaultDisplay().getHeight();
-
-        if (nestedScrollView.getScrollY() > screenHeight) {
-
-        } else {
-
-        }
-
-        if (nestedScrollView.getScrollY() > tabBeginY) {
-            if (tabLayout.getParent() instanceof LinearLayout) {
-                fullScreen(getActivity(),true);
-                linearLayout.removeView(tabLayout);
-                frameLayout.addView(tabLayout);
-            }
-        } else {
-            if (tabLayout.getParent() instanceof FrameLayout) {
-                fullScreen(getActivity(),false);
-                frameLayout.removeView(tabLayout);
-                linearLayout.addView(tabLayout,3);
-            }
-        }
     }
 }
